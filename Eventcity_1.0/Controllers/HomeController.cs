@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Eventcity_1._0.Controllers
+namespace Eventcity.Controllers
 {
     public class HomeController : Controller
     {
@@ -12,7 +12,7 @@ namespace Eventcity_1._0.Controllers
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
-            return View();
+            return View("~/Views/Home/TestHomePage.cshtml");
         }
 
         public ActionResult About()
@@ -28,5 +28,30 @@ namespace Eventcity_1._0.Controllers
 
             return View();
         }
+
+        public ActionResult TestHomePage()
+        {
+            return View();
+        }
+
+        public PartialViewResult PartialTabContent(string strPageName)
+        {
+            switch (strPageName)
+            {
+                case "WhatsHappening":
+                    return PartialView("PartialWhatsHappening");
+                case "FindEvents":
+                    return PartialView("PartialFindEvents");
+                case "Calendar":
+                    return PartialView("PartialCalendar");
+                case "Notifications":
+                    return PartialView("PartialNotifications");
+                default:
+                    break;
+            }
+
+            return null;
+        }
     }
 }
+

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventcity_1.0", "Eventcity_1.0\Eventcity_1.0.csproj", "{5577D8DF-0C20-426E-A096-C2B3E57025FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventcity", "Eventcity_1.0\Eventcity.csproj", "{5577D8DF-0C20-426E-A096-C2B3E57025FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

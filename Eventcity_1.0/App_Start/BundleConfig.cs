@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Eventcity_1._0
+namespace Eventcity
 {
     public class BundleConfig
     {

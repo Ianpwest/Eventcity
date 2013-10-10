@@ -1,5 +1,6 @@
 ﻿html {
-    background-color: #e2e2e2;
+    /*background-color: #e2e2e2;*/
+    background-color: gray;
     margin: 0;
     padding: 0;
 }
@@ -99,23 +100,218 @@ h5, h6 {
 }
 
 #body {
-    background-color: #efeeef;
+    background-color: whitesmoke;
     clear: both;
     padding-bottom: 35px;
 }
 
-    .main-content {
-        background: url("../Images/accent.png") no-repeat;
-        padding-left: 10px;
-        padding-top: 30px;
+.main-content {
+    /*background: url("../Images/accent.png") no-repeat;*/
+    padding-left: 10px;
+    padding-top: 30px;
+}
+
+.featured + .main-content {
+    background: url("../Images/heroAccent.png") no-repeat;
+}
+
+.ParentBody div {
+    float: left;
+    clear: none;
+}
+
+.BodyColumnLeft{
+    margin-right: 30px;
+    margin-left: -200px;
+}
+.BodyColumnLeft div {
+    float: none;
+}
+
+.TabBody {
+    margin: 50px 0px 0px 0px;
+}
+
+#EventContainer {
+    background-color: whitesmoke;
+    width: 850px;
+    height: 800px;
+    padding: 20px;
+    margin: 20px 0px 0px 0px;
+    border-right: 1px solid #AAA;
+    border-left: 1px solid #AAA;
+    border-bottom: 1px solid #AAA;
+    overflow: auto;
+}
+
+.EventParent {
+    float: left;
+    clear: none;
+    margin: 10px;
+    height: 130px;
+}
+
+.EventImage {
+    margin-right: 20px;
+}
+
+.EventImage img {
+    width: 150px;
+    height:130px;
+    cursor: pointer;
+}
+
+.EventCenter {
+    width: 400px;
+}
+
+.EventTopLine {
+     float: left;
+}
+
+.EventTopLine h2, h3, h1 {
+   margin: -8px 0px 0px 0px
+}
+
+.EventDetails {
+    margin: 9px 0px 0px 0px;
+    width: 210px;
+}
+
+.EventDetails div {
+    float: none;
+    margin-bottom: 10px;
+}
+
+.EventDetails ul {
+    text-decoration: none;
+    margin-left: 0px;
+    padding: 0px;
+    list-style: none;
+    display: inline-block;
+}
+
+.EventDetails li p {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0px;
+    margin: 5px;
+}
+
+.EventDescription {
+    width: 390px;
+}
+
+.ButtonFollow {
+    height: 25px;
+    line-height: 12px;
+    margin-left: 160px;
+}
+
+.Logo {
+    color: #c8c8c8;
+    font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+    font-size: 2.3em;
+    margin: 0;
+}
+
+.ProfileIconParent {
+    width: 150px;
+    margin: 90px 0px 0 0;
+}
+
+.ProfileIconParent img{
+    margin: 0px 10px 0px 0px;
+    height: 80px;
+    width: 120px;
+}
+
+.ProfileIconParent p {
+    font-size: 20px;
+    margin: 0px 0 0 0;
+}
+
+.CalendarIconParent {
+    margin: 80px 0px 0px -12px;
+}
+
+.CalendarIconParent img {
+    height: 100px;
+    width: 150px;
+}
+/*Tab control styling*/
+
+.tabrow {
+    text-align: left;
+    list-style: none;
+    margin: 0px 0px -20px;
+    padding: 0px;
+    line-height: 35px;
+    height: 37px;
+    overflow: hidden;
+    font-size: 12px;
+    font-family: arial;
+    position: relative;
+}
+
+    .tabrow li {
+        border: 1px solid #AAA;
+        background: #D1D1D1;
+        background: -o-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+        background: -ms-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+        background: -moz-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+        background: -webkit-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+        background: linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
+        text-shadow: 0 1px #FFF;
+        display: inline-block;
+        position: relative;
+        z-index: 0;
+        margin-left: 0px;
+        margin-right: 15px;
+        padding: 0px 30px;
+        cursor: pointer;
     }
 
-    .featured + .main-content {
-        background: url("../Images/heroAccent.png") no-repeat;
+    .tabrow li.selected {
+        background: whitesmoke;
+        color: #333;
+        z-index: 2;
+        border-bottom-color: whitesmoke;
     }
+
+    .tabrow li.selected:hover {
+        background-color: whitesmoke;
+    }
+
+    .tabrow li:hover {
+        background: whitesmoke;
+        z-index: 2;
+    }
+
+    .tabrow a {
+        color: #555;
+        text-decoration: none;
+    }
+
+    .tabrow a:hover {
+        background-color: transparent;
+    }
+
+   .tabrow:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #AAA;
+    z-index: 1;
+}
+
+/*End tab control styling*/
 
 header .content-wrapper {
-    padding-top: 20px; 
+    padding-top: 20px;
 }
 
 footer {
@@ -135,12 +331,12 @@ footer {
     margin: 0;
 }
 
-.site-title a, .site-title a:hover, .site-title a:active {
-    background: none;
-    color: #c8c8c8;
-    outline: none;
-    text-decoration: none;
-}
+    .site-title a, .site-title a:hover, .site-title a:active {
+        background: none;
+        color: #c8c8c8;
+        outline: none;
+        text-decoration: none;
+    }
 
 
 /* login
@@ -160,12 +356,12 @@ footer {
         text-decoration: none;
     }
 
-    #login a.username {
-        background: none;
-        margin: 0;
-        padding: 0;
-        text-decoration: underline;
-    }
+        #login a.username {
+            background: none;
+            margin: 0;
+            padding: 0;
+            text-decoration: underline;
+        }
 
     #login ul {
         margin: 0;
@@ -199,10 +395,10 @@ ul#menu {
             text-decoration: none;
         }
 
-        ul#menu li a:hover {
-            color: #333;
-            text-decoration: none;
-        }
+            ul#menu li a:hover {
+                color: #333;
+                text-decoration: none;
+            }
 
 
 /* page elements
@@ -214,36 +410,31 @@ ul#menu {
 
     .featured .content-wrapper {
         background-color: #7ac0da;
-        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
-        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
         color: #3e5667;
         padding: 20px 40px 30px 40px;
     }
 
-        .featured hgroup.title h1, .featured hgroup.title h2 {
-            color: #fff;
-        }
+    .featured hgroup.title h1, .featured hgroup.title h2 {
+        color: #fff;
+    }
 
-        .featured p {
-            font-size: 1.1em;
-        }
+    .featured p {
+        font-size: 1.1em;
+    }
 
 /* page titles */
 hgroup.title {
     margin-bottom: 10px;
 }
 
-hgroup.title h1, hgroup.title h2 {
-    display: inline;
-}
+    hgroup.title h1, hgroup.title h2 {
+        display: inline;
+    }
 
-hgroup.title h2 {
-    font-weight: normal;
-    margin-left: 3px;
-}
+    hgroup.title h2 {
+        font-weight: normal;
+        margin-left: 3px;
+    }
 
 /* features */
 section.feature {
@@ -355,12 +546,12 @@ aside {
         width: 250px;
     }
 
-    #loginForm input[type="checkbox"],
-    #loginForm input[type="submit"],
-    #loginForm input[type="button"],
-    #loginForm button {
-        width: auto;
-    }
+        #loginForm input[type="checkbox"],
+        #loginForm input[type="submit"],
+        #loginForm input[type="button"],
+        #loginForm button {
+            width: auto;
+        }
 
 #socialLoginForm {
     margin-left: 40px;
@@ -369,7 +560,7 @@ aside {
 }
 
     #socialLoginForm h2 {
-        margin-bottom:  5px;
+        margin-bottom: 5px;
     }
 
 #socialLoginList button {
@@ -420,9 +611,9 @@ label {
     font-weight: 600;
 }
 
-label.checkbox {
-    display: inline;
-}
+    label.checkbox {
+        display: inline;
+    }
 
 input, textarea {
     border: 1px solid #e2e2e2;
@@ -443,32 +634,32 @@ textarea {
         border: 1px solid #7ac0da;
     }
 
-    input[type="checkbox"] {
-        background: transparent;
-        border: inherit;
-        width: auto;
-    }
+input[type="checkbox"] {
+    background: transparent;
+    border: inherit;
+    width: auto;
+}
 
-    input[type="submit"],
-    input[type="button"],
-    button {
-        background-color: #d3dce0;
-        border: 1px solid #787878;
-        cursor: pointer;
-        font-size: 1.2em;
-        font-weight: 600;
-        padding: 7px;
-        margin-right: 8px;
-        width: auto;
-    }
+input[type="submit"],
+input[type="button"],
+button {
+    background-color: #d3dce0;
+    border: 1px solid #787878;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 7px;
+    margin-right: 8px;
+    width: auto;
+}
 
-    td input[type="submit"],
-    td input[type="button"],
-    td button {
-        font-size: 1em;
-        padding: 4px;
-        margin-right: 4px;
-    }
+td input[type="submit"],
+td input[type="button"],
+td button {
+    font-size: 1em;
+    padding: 4px;
+    margin-right: 4px;
+}
 
 /* info and errors */
 .message-info {
@@ -546,36 +737,36 @@ th {
         position: relative;
     }
 
-    th a:link, th a:visited, th a:active, th a:hover {
-        color: #333;
-        font-weight: 600;
-        text-decoration: none;
-        padding: 0;
-    }
+        th a:link, th a:visited, th a:active, th a:hover {
+            color: #333;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0;
+        }
 
-    th a:hover {
-        color: #000;
-    }
+        th a:hover {
+            color: #000;
+        }
 
     th.asc a, th.desc a {
         margin-right: .75em;
     }
 
-    th.asc a:after, th.desc a:after {
-        display: block;
-        position: absolute;
-        right: 0em;
-        top: 0;
-        font-size: 0.75em;
-    }
+        th.asc a:after, th.desc a:after {
+            display: block;
+            position: absolute;
+            right: 0em;
+            top: 0;
+            font-size: 0.75em;
+        }
 
-    th.asc a:after {
-        content: '▲';
-    }
+        th.asc a:after {
+            content: '▲';
+        }
 
-    th.desc a:after {
-        content: '▼';
-    }
+        th.desc a:after {
+            content: '▼';
+        }
 
 td {
     padding: 0.25em 2em 0.25em 0em;
@@ -632,9 +823,9 @@ tr.pager td {
             padding: 0;
         }
 
-        #login a:hover {
-            color: #333;
-        }
+            #login a:hover {
+                color: #333;
+            }
 
     /* menu */
     nav {
@@ -699,12 +890,12 @@ tr.pager td {
                 background: none;
             }
 
-     /* features */
-     section.feature {
+    /* features */
+    section.feature {
         float: none;
         padding: 10px;
         width: auto;
-     }
+    }
 
         section.feature img {
             color: #999;

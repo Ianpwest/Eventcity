@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace Eventcity_1._0.Models
+namespace Eventcity.Models
 {
     public class UsersContext : DbContext
     {

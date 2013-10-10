@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Web.WebPages.OAuth;
-using Eventcity_1._0.Models;
+using Eventcity.Models;
 
-namespace Eventcity_1._0
+namespace Eventcity
 {
     public static class AuthConfig
     {

@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "TestHomePage";
+}
+
+
+<section class="ParentBody">
+    
+    <div class="BodyColumnLeft">
+        
+        <div>
+            <p class="Logo">@Html.ActionLink("Eventcity", "Index", "Home")</p>
+        </div>
+        
+        <div>
+            @Html.Partial("~/Views/Home/PartialProfileIcon.cshtml")
+        </div>
+        
+        <div>
+            @Html.Partial("/Views/Home/PartialCalendarIcon.cshtml")
+        </div>
+        
+        <div>
+            <button style="margin-top: 80px">Create Event</button>
+        </div>
+
+    </div>
+
+    <div class="TabBody">
+        <ul class="tabrow">
+            <li class="selected" title="WhatsHappening"><a>What's Happening</a></li>
+
+            <li title="FindEvents"><a>Find Events</a></li>
+
+            <li title="Calendar"><a>My Calendar</a></li>
+            
+            <li title="Notifications"><a>Notifications</a></li>
+        </ul>
+
+        <section id="EventContainer">
+            @Html.Partial("~/Views/Home/PartialWhatsHappening.cshtml")
+        </section>
+    </div>
+    
+</section>
+
+@section scripts
+{
+    @*Changes the styling for the clicked tab*@
+    <script type="text/javascript">
+        $("li").click(function (e) {
+            e.preventDefault();
+            $("li").removeClass("selected");
+            $(this).addClass("selected");
+
+        });
+    </script>
+    
+    @*Gets the partial view for the section below the tab item clicked*@
+    <script type="text/jscript">
+        $("li").click(function () {
+            $("#EventContainer").load("Home/PartialTabContent", { strPageName: $(this).prop('title') });
+        });
+    </script>
+    
+    
+}

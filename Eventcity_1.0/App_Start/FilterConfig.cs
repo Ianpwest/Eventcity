@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Eventcity_1._0
+namespace Eventcity
 {
     public class FilterConfig
     {

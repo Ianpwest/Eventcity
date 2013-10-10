@@ -8,10 +8,10 @@ using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-using Eventcity_1._0.Filters;
-using Eventcity_1._0.Models;
+using Eventcity.Filters;
+using Eventcity.Models;
 
-namespace Eventcity_1._0.Controllers
+namespace Eventcity.Controllers
 {
     [Authorize]
     [InitializeSimpleMembership]
