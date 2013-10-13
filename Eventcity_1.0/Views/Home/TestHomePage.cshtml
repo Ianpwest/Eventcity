@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Eventcity.Models.events>
+
+@{
     ViewBag.Title = "TestHomePage";
 }
 
@@ -37,7 +39,7 @@
         </ul>
 
         <section id="EventContainer">
-            @Html.Partial("~/Views/Home/PartialWhatsHappening.cshtml")
+            @Html.Partial("~/Views/Home/PartialWhatsHappening.cshtml", @Model)
         </section>
     </div>
     

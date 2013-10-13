@@ -4,10 +4,40 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="eventcitydbModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="eventcitydbModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="eventcitydbModelStoreContainer">
+          <EntitySet Name="accounts" EntityType="eventcitydbModel.Store.accounts" store:Type="Tables" Schema="eventcitydb" />
+          <EntitySet Name="accounts_events" EntityType="eventcitydbModel.Store.accounts_events" store:Type="Tables" Schema="eventcitydb" />
           <EntitySet Name="events" EntityType="eventcitydbModel.Store.events" store:Type="Tables" Schema="eventcitydb" />
+          <AssociationSet Name="FK__accounts" Association="eventcitydbModel.Store.FK__accounts">
+            <End Role="accounts" EntitySet="accounts" />
+            <End Role="accounts_events" EntitySet="accounts_events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__events" Association="eventcitydbModel.Store.FK__events">
+            <End Role="events" EntitySet="events" />
+            <End Role="accounts_events" EntitySet="accounts_events" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="accounts">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="strUserName" Type="varchar" MaxLength="50" />
+          <Property Name="strPassword" Type="varchar" MaxLength="50" />
+          <Property Name="strName" Type="varchar" MaxLength="50" />
+          <Property Name="strStatus" Type="varchar" MaxLength="80" />
+          <Property Name="strHomeCity" Type="varchar" MaxLength="80" />
+          <Property Name="strHomeState" Type="varchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="accounts_events">
+          <Key>
+            <PropertyRef Name="accountID" />
+            <PropertyRef Name="eventID" />
+          </Key>
+          <Property Name="accountID" Type="int" Nullable="false" />
+          <Property Name="eventID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="events">
           <Key>
             <PropertyRef Name="PK" />
@@ -15,33 +45,77 @@
           <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="strEventName" Type="varchar" MaxLength="50" />
           <Property Name="strEventDescription" Type="varchar" MaxLength="300" />
-          <Property Name="dEventDate" Type="date" />
-          <Property Name="tEventTime" Type="time" />
+          <Property Name="dEventDate" Type="datetime" />
           <Property Name="strHost" Type="varchar" MaxLength="50" />
           <Property Name="bIsDeleted" Type="bool" Nullable="false" />
-          <Property Name="strEventImg" Type="varchar" MaxLength="100" />
+          <Property Name="strEventImg" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <Association Name="FK__accounts">
+          <End Role="accounts" Type="eventcitydbModel.Store.accounts" Multiplicity="1" />
+          <End Role="accounts_events" Type="eventcitydbModel.Store.accounts_events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accounts">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="accounts_events">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__events">
+          <End Role="events" Type="eventcitydbModel.Store.events" Multiplicity="1" />
+          <End Role="accounts_events" Type="eventcitydbModel.Store.accounts_events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="events">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="accounts_events">
+              <PropertyRef Name="eventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="eventcitydbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="eventcitydbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="events" EntityType="eventcitydbModel.event" />
+          <EntitySet Name="events" EntityType="eventcitydbModel.events" />
+          <EntitySet Name="accounts" EntityType="eventcitydbModel.accounts" />
+          <AssociationSet Name="accounts_events" Association="eventcitydbModel.accounts_events">
+            <End Role="account" EntitySet="accounts" />
+            <End Role="events" EntitySet="events" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="event">
+        <EntityType Name="events">
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="strEventName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="strEventDescription" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
-          <Property Name="dEventDate" Type="DateTime" />
-          <Property Name="tEventTime" Type="Time" />
-          <Property Name="strHost" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="bIsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="strEventImg" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="PK" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="strEventName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="strEventDescription" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dEventDate" />
+          <Property Type="String" Name="strHost" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="bIsDeleted" Nullable="false" />
+          <Property Type="String" Name="strEventImg" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="accounts" Relationship="eventcitydbModel.accounts_events" FromRole="events" ToRole="account" />
         </EntityType>
+        <EntityType Name="accounts">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="strUserName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="strPassword" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="strName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="strStatus" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="strHomeCity" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="strHomeState" MaxLength="80" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="events" Relationship="eventcitydbModel.accounts_events" FromRole="account" ToRole="events" />
+        </EntityType>
+        <Association Name="accounts_events">
+          <End Type="eventcitydbModel.accounts" Role="account" Multiplicity="*" />
+          <End Type="eventcitydbModel.events" Role="events" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -49,19 +123,39 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="eventcitydbModelStoreContainer" CdmEntityContainer="eventcitydbEntities">
           <EntitySetMapping Name="events">
-            <EntityTypeMapping TypeName="eventcitydbModel.event">
+            <EntityTypeMapping TypeName="eventcitydbModel.events">
               <MappingFragment StoreEntitySet="events">
-                <ScalarProperty Name="PK" ColumnName="PK" />
-                <ScalarProperty Name="strEventName" ColumnName="strEventName" />
-                <ScalarProperty Name="strEventDescription" ColumnName="strEventDescription" />
-                <ScalarProperty Name="dEventDate" ColumnName="dEventDate" />
-                <ScalarProperty Name="tEventTime" ColumnName="tEventTime" />
-                <ScalarProperty Name="strHost" ColumnName="strHost" />
-                <ScalarProperty Name="bIsDeleted" ColumnName="bIsDeleted" />
                 <ScalarProperty Name="strEventImg" ColumnName="strEventImg" />
+                <ScalarProperty Name="bIsDeleted" ColumnName="bIsDeleted" />
+                <ScalarProperty Name="strHost" ColumnName="strHost" />
+                <ScalarProperty Name="dEventDate" ColumnName="dEventDate" />
+                <ScalarProperty Name="strEventDescription" ColumnName="strEventDescription" />
+                <ScalarProperty Name="strEventName" ColumnName="strEventName" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="accounts">
+            <EntityTypeMapping TypeName="eventcitydbModel.accounts">
+              <MappingFragment StoreEntitySet="accounts">
+                <ScalarProperty Name="strHomeState" ColumnName="strHomeState" />
+                <ScalarProperty Name="strHomeCity" ColumnName="strHomeCity" />
+                <ScalarProperty Name="strStatus" ColumnName="strStatus" />
+                <ScalarProperty Name="strName" ColumnName="strName" />
+                <ScalarProperty Name="strPassword" ColumnName="strPassword" />
+                <ScalarProperty Name="strUserName" ColumnName="strUserName" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="accounts_events" TypeName="eventcitydbModel.accounts_events" StoreEntitySet="accounts_events">
+            <EndProperty Name="events">
+              <ScalarProperty Name="PK" ColumnName="eventID" />
+            </EndProperty>
+            <EndProperty Name="account">
+              <ScalarProperty Name="PK" ColumnName="accountID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -83,7 +177,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="EventcityDB">
-        <EntityTypeShape EntityType="eventcitydbModel.event" Width="1.5" PointX="0.75" PointY="0.75" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="eventcitydbModel.events" Width="3.375" PointX="0.75" PointY="0.75" Height="2.3848893229166666" IsExpanded="true" />
+        <EntityTypeShape EntityType="eventcitydbModel.accounts" Width="1.5" PointX="5.5" PointY="0.75" Height="2.5571907552083335" />
+        <AssociationConnector Association="eventcitydbModel.accounts_events" >
+          <ConnectorPoint PointX="5.5" PointY="2.0285953776041667" />
+          <ConnectorPoint PointX="4.125" PointY="2.0285953776041667" />
+        </AssociationConnector>
       </Diagram>
     </Diagrams>
   </Designer>

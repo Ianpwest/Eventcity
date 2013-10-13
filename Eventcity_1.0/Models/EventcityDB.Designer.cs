@@ -17,6 +17,12 @@ using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
+#region EDM Relationship Metadata
+
+[assembly: EdmRelationshipAttribute("eventcitydbModel", "accounts_events", "account", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Eventcity.Models.accounts), "events", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Eventcity.Models.events))]
+
+#endregion
+
 namespace Eventcity.Models
 {
     #region Contexts
@@ -68,18 +74,34 @@ namespace Eventcity.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<@event> events
+        public ObjectSet<events> events
         {
             get
             {
                 if ((_events == null))
                 {
-                    _events = base.CreateObjectSet<@event>("events");
+                    _events = base.CreateObjectSet<events>("events");
                 }
                 return _events;
             }
         }
-        private ObjectSet<@event> _events;
+        private ObjectSet<events> _events;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<accounts> accounts
+        {
+            get
+            {
+                if ((_accounts == null))
+                {
+                    _accounts = base.CreateObjectSet<accounts>("accounts");
+                }
+                return _accounts;
+            }
+        }
+        private ObjectSet<accounts> _accounts;
 
         #endregion
 
@@ -88,9 +110,17 @@ namespace Eventcity.Models
         /// <summary>
         /// Deprecated Method for adding a new object to the events EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToevents(@event @event)
+        public void AddToevents(events events)
         {
-            base.AddObject("events", @event);
+            base.AddObject("events", events);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the accounts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToaccounts(accounts accounts)
+        {
+            base.AddObject("accounts", accounts);
         }
 
         #endregion
@@ -104,24 +134,253 @@ namespace Eventcity.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eventcitydbModel", Name="event")]
+    [EdmEntityTypeAttribute(NamespaceName="eventcitydbModel", Name="accounts")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class @event : EntityObject
+    public partial class accounts : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new event object.
+        /// Create a new accounts object.
+        /// </summary>
+        /// <param name="pK">Initial value of the PK property.</param>
+        public static accounts Createaccounts(global::System.Int32 pK)
+        {
+            accounts accounts = new accounts();
+            accounts.PK = pK;
+            return accounts;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PK
+        {
+            get
+            {
+                return _PK;
+            }
+            set
+            {
+                if (_PK != value)
+                {
+                    OnPKChanging(value);
+                    ReportPropertyChanging("PK");
+                    _PK = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PK");
+                    OnPKChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PK;
+        partial void OnPKChanging(global::System.Int32 value);
+        partial void OnPKChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String strUserName
+        {
+            get
+            {
+                return _strUserName;
+            }
+            set
+            {
+                OnstrUserNameChanging(value);
+                ReportPropertyChanging("strUserName");
+                _strUserName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("strUserName");
+                OnstrUserNameChanged();
+            }
+        }
+        private global::System.String _strUserName;
+        partial void OnstrUserNameChanging(global::System.String value);
+        partial void OnstrUserNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String strPassword
+        {
+            get
+            {
+                return _strPassword;
+            }
+            set
+            {
+                OnstrPasswordChanging(value);
+                ReportPropertyChanging("strPassword");
+                _strPassword = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("strPassword");
+                OnstrPasswordChanged();
+            }
+        }
+        private global::System.String _strPassword;
+        partial void OnstrPasswordChanging(global::System.String value);
+        partial void OnstrPasswordChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String strName
+        {
+            get
+            {
+                return _strName;
+            }
+            set
+            {
+                OnstrNameChanging(value);
+                ReportPropertyChanging("strName");
+                _strName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("strName");
+                OnstrNameChanged();
+            }
+        }
+        private global::System.String _strName;
+        partial void OnstrNameChanging(global::System.String value);
+        partial void OnstrNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String strStatus
+        {
+            get
+            {
+                return _strStatus;
+            }
+            set
+            {
+                OnstrStatusChanging(value);
+                ReportPropertyChanging("strStatus");
+                _strStatus = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("strStatus");
+                OnstrStatusChanged();
+            }
+        }
+        private global::System.String _strStatus;
+        partial void OnstrStatusChanging(global::System.String value);
+        partial void OnstrStatusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String strHomeCity
+        {
+            get
+            {
+                return _strHomeCity;
+            }
+            set
+            {
+                OnstrHomeCityChanging(value);
+                ReportPropertyChanging("strHomeCity");
+                _strHomeCity = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("strHomeCity");
+                OnstrHomeCityChanged();
+            }
+        }
+        private global::System.String _strHomeCity;
+        partial void OnstrHomeCityChanging(global::System.String value);
+        partial void OnstrHomeCityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String strHomeState
+        {
+            get
+            {
+                return _strHomeState;
+            }
+            set
+            {
+                OnstrHomeStateChanging(value);
+                ReportPropertyChanging("strHomeState");
+                _strHomeState = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("strHomeState");
+                OnstrHomeStateChanged();
+            }
+        }
+        private global::System.String _strHomeState;
+        partial void OnstrHomeStateChanging(global::System.String value);
+        partial void OnstrHomeStateChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("eventcitydbModel", "accounts_events", "events")]
+        public EntityCollection<events> events
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<events>("eventcitydbModel.accounts_events", "events");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<events>("eventcitydbModel.accounts_events", "events", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="eventcitydbModel", Name="events")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class events : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new events object.
         /// </summary>
         /// <param name="pK">Initial value of the PK property.</param>
         /// <param name="bIsDeleted">Initial value of the bIsDeleted property.</param>
-        public static @event Createevent(global::System.Int32 pK, global::System.Boolean bIsDeleted)
+        /// <param name="strEventImg">Initial value of the strEventImg property.</param>
+        public static events Createevents(global::System.Int32 pK, global::System.Boolean bIsDeleted, global::System.String strEventImg)
         {
-            @event @event = new @event();
-            @event.PK = pK;
-            @event.bIsDeleted = bIsDeleted;
-            return @event;
+            events events = new events();
+            events.PK = pK;
+            events.bIsDeleted = bIsDeleted;
+            events.strEventImg = strEventImg;
+            return events;
         }
 
         #endregion
@@ -232,30 +491,6 @@ namespace Eventcity.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.TimeSpan> tEventTime
-        {
-            get
-            {
-                return _tEventTime;
-            }
-            set
-            {
-                OntEventTimeChanging(value);
-                ReportPropertyChanging("tEventTime");
-                _tEventTime = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("tEventTime");
-                OntEventTimeChanged();
-            }
-        }
-        private Nullable<global::System.TimeSpan> _tEventTime;
-        partial void OntEventTimeChanging(Nullable<global::System.TimeSpan> value);
-        partial void OntEventTimeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String strHost
         {
             get
@@ -302,7 +537,7 @@ namespace Eventcity.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String strEventImg
         {
@@ -314,7 +549,7 @@ namespace Eventcity.Models
             {
                 OnstrEventImgChanging(value);
                 ReportPropertyChanging("strEventImg");
-                _strEventImg = StructuralObject.SetValidValue(value, true);
+                _strEventImg = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("strEventImg");
                 OnstrEventImgChanged();
             }
@@ -326,6 +561,32 @@ namespace Eventcity.Models
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("eventcitydbModel", "accounts_events", "account")]
+        public EntityCollection<accounts> accounts
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<accounts>("eventcitydbModel.accounts_events", "account");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<accounts>("eventcitydbModel.accounts_events", "account", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
 
     #endregion

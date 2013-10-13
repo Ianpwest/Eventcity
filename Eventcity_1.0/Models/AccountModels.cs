@@ -69,6 +69,8 @@ namespace Eventcity.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        public bool bFailedLogin = false;
     }
 
     public class RegisterModel

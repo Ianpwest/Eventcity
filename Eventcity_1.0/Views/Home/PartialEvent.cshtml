@@ -1,21 +1,22 @@
-﻿<div class="EventParent">
+﻿@model Eventcity.Models.events
+
+<div class="EventParent">
     <div class="EventImage">
-        <img src="~/Images/EmmaFunny.jpg"/>
+        <img src="@Url.Content(Model.strEventImg)" alt="Failed to load" onerror="this.src='/Images/EventImages/EventDefault.jpg';"/>
     </div>
     
     <div class="EventCenter">
-        <div class="EventTopLine">
-            <div>
-                <h2>Music Event</h2>
+        <div class="EventTopLine"> 
+            <div style="width: 300px; float:left">
+                <h2>@Model.strEventName</h2>
             </div>
-            <div style="margin-left: 20px">
+            <div style="float:right; vertical-align:top">
                 <button class="ButtonFollow">Follow</button>
             </div>
         </div>
         <div class="EventDescription">
             <span>
-                This is the event description area. It is here that the event creator can give you a detailed account of what you could expect if you attend this event.
-                Maybe there will be drinks or dancing or karaoke to partake in and the viewer would want to know.
+                @Model.strEventDescription
             </span>
         </div>
     </div>
@@ -25,21 +26,33 @@
             <li>
                 <div>
                     <div>
-                        <p>Date: 4/20/1989</p>
+                        <p>Date: 
+                            @{ 
+                                string strDate = ((DateTime)@Model.dEventDate).ToString("d"); 
+                             }
+                             @strDate
+                        </p>
                     </div>
                 </div>
             </li>
             <li>
                <div>
                     <div>
-                        <p>Time: 8:30 PM</p>
+                        <p>Time: 
+                            @{
+                                
+                                string strTime = ((DateTime)@Model.dEventDate).ToString("t"); 
+                            }
+                        
+                            @strTime
+                        </p>
                     </div>
                 </div>
             </li>
             <li>
                 <div>
                     <div>
-                        <p>Host: Events Inc.</p>
+                        <p>Host: @Model.strHost</p>
                     </div>
                 </div>
             </li>

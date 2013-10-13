@@ -1,18 +1,18 @@
-﻿<p>
-    WHAT'S HAPPENIN SMAPENIN
+﻿@model List<Eventcity.Models.events>
+
+<p>
+    Partial what's happening header area
 </p>
 
 <section>
-    @Html.Partial("PartialEvent")
-    @Html.Partial("PartialEvent")
-    @Html.Partial("PartialEvent")
-    @Html.Partial("PartialEvent")
-    @Html.Partial("PartialEvent")
-    @Html.Partial("PartialEvent")
-    @Html.Partial("PartialEvent")
-    @Html.Partial("PartialEvent")
-    @Html.Partial("PartialEvent")
-    @Html.Partial("PartialEvent")
-    @Html.Partial("PartialEvent")
-    @Html.Partial("PartialEvent")
+
+    @{
+        if(Model != null)
+        {
+            foreach (var m in Model)
+            {
+                @Html.Partial("PartialEvent", m)
+            }
+        }
+    }
 </section>

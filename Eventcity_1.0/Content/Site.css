@@ -134,7 +134,7 @@ h5, h6 {
 
 #EventContainer {
     background-color: whitesmoke;
-    width: 850px;
+    width: 900px;
     height: 800px;
     padding: 20px;
     margin: 20px 0px 0px 0px;
@@ -165,15 +165,20 @@ h5, h6 {
     width: 400px;
 }
 
-.EventTopLine {
+.EventTopLine 
+{
      float: left;
+     overflow: hidden;
+     margin-bottom: 5px;
 }
 
 .EventTopLine h2, h3, h1 {
    margin: -8px 0px 0px 0px
 }
 
-.EventDetails {
+.EventDetails 
+{
+    border-left: 1px solid #AAA;
     margin: 9px 0px 0px 0px;
     width: 210px;
 }
@@ -205,7 +210,7 @@ h5, h6 {
 .ButtonFollow {
     height: 25px;
     line-height: 12px;
-    margin-left: 160px;
+    margin-left: 0px;
 }
 
 .Logo {

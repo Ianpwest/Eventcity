@@ -10,9 +10,9 @@ namespace Eventcity.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            List<Eventcity.Models.events> lstEvents = Classes.DatabaseInterface.GetAllEvents();
 
-            return View("~/Views/Home/TestHomePage.cshtml");
+            return View("~/Views/Home/TestHomePage.cshtml", lstEvents);
         }
 
         public ActionResult About()
@@ -29,17 +29,13 @@ namespace Eventcity.Controllers
             return View();
         }
 
-        public ActionResult TestHomePage()
-        {
-            return View();
-        }
-
         public PartialViewResult PartialTabContent(string strPageName)
         {
             switch (strPageName)
             {
                 case "WhatsHappening":
-                    return PartialView("PartialWhatsHappening");
+                    List<Eventcity.Models.events> lstEvents = Classes.DatabaseInterface.GetAllEvents();
+                    return PartialView("PartialWhatsHappening", lstEvents);
                 case "FindEvents":
                     return PartialView("PartialFindEvents");
                 case "Calendar":
