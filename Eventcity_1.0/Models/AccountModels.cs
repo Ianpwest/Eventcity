@@ -89,6 +89,20 @@ namespace Eventcity.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Current State")]
+        public string HomeState{ get; set; }
+
+        [Required]
+        [Display(Name = "Current City")]
+        public string HomeCity { get; set; }
+
+        public bool bFailedRegister = false;
     }
 
     public class ExternalLogin

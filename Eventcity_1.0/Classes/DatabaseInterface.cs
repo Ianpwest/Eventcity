@@ -33,7 +33,8 @@ namespace Eventcity.Classes
             return lstEvents;
         }
 
-        public static bool AccountExists(string strUserName, string strPassword)
+
+        public static bool VerifyAccount(string strUserName, string strPassword)
         {
             bool bExists = false;
 
@@ -46,6 +47,44 @@ namespace Eventcity.Classes
                 return true;
 
             return bExists;
+        }
+
+        public static bool AccountExists(string strUserName)
+        {
+            bool bExists = false;
+
+            int results = (from r in m_db.accounts
+                           where r.strUserName == strUserName
+                           select r).Count();
+
+            if (results != 0)
+                return true;
+
+            return bExists;
+        }
+
+        public static bool RegisterAccount(Eventcity.Models.RegisterModel rm)
+        {
+            //Create a new account model to add to the database with the given information
+            Models.accounts accountNew = new Models.accounts();
+            accountNew.strUserName = rm.UserName;
+            accountNew.strPassword = rm.Password;
+            accountNew.strName = rm.Name;
+            accountNew.strStatus = string.Empty;
+            accountNew.strHomeCity = rm.HomeCity;
+            accountNew.strHomeState = rm.HomeState;
+
+            try
+            {
+                m_db.AddToaccounts(accountNew);
+                m_db.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

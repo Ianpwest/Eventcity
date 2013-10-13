@@ -32,7 +32,7 @@ namespace Eventcity.Controllers
         [HttpPost]
         public ActionResult Login(Eventcity.Models.LoginModel lm)
         {
-            if (DatabaseInterface.AccountExists(lm.UserName, lm.Password))
+            if (DatabaseInterface.VerifyAccount(lm.UserName, lm.Password))
             {
                 FormsAuthentication.SetAuthCookie(lm.UserName, lm.RememberMe);
 
@@ -48,14 +48,31 @@ namespace Eventcity.Controllers
         // GET: /Register/
         public ActionResult Register()
         {
-            //LEFT OFF HERE NEED TO REGISTER PEOPLE TO THE DATABASE
-            return View();
+            Models.RegisterModel rm = new Models.RegisterModel();
+
+            return View(rm);
         }
 
         [HttpPost]
-        public ActionResult Register(string str)
+        public ActionResult Register(Models.RegisterModel rm)
         {
-            return View();
+            //Check to see if the account name is already in use
+            if (DatabaseInterface.AccountExists(rm.UserName))
+            {
+                rm.bFailedRegister = true;
+                return View(rm);
+            }
+
+            //If database failed to register
+            if (!DatabaseInterface.RegisterAccount(rm))
+            {
+                rm.bFailedRegister = true;
+                return View(rm);
+            }
+
+            //Successfully registered
+            FormsAuthentication.SetAuthCookie(rm.UserName, false);
+            return RedirectToAction("Index", "Home");
         }
 
         //
