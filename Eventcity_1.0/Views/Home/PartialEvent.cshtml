@@ -2,7 +2,8 @@
 
 <div class="EventParent">
     <div class="EventImage">
-        <img src="@Url.Content(Model.strEventImg)" alt="Failed to load" onerror="this.src='/Images/EventImages/EventDefault.jpg';"/>
+        @*<img src="@Url.Content(Model.strEventImg)" alt="Failed to load" onerror="this.src='/Images/EventImages/EventDefault.jpg';"/>*@
+        <img src='@Url.Action("GenerateImage", new { strImageLocation = @Model.strEventImg })' alt="Failed to load" onerror="this.src='/Images/EventImages/EventDefault.jpg';"/>
     </div>
     
     <div class="EventCenter">

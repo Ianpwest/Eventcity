@@ -28,6 +28,7 @@ namespace Eventcity.Classes
             foreach (Models.events ev in results)
             {
                 lstEvents.Add(ev);
+
             }
 
             return lstEvents;
