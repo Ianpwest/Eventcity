@@ -9,6 +9,7 @@
     @{
         if(Model != null)
         {
+            // Unhandled exception - database problem. If parameter is null (contentPath in this case) throws an exception.
             foreach (var m in Model)
             {
                 @Html.Partial("PartialEvent", m)
